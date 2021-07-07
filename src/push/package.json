@@ -1,0 +1,28 @@
+{
+  "name": "static_push",
+  "version": "1.0.0",
+  "description": "",
+  "main": "push.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@node-minify/clean-css": "^6.2.0",
+    "@node-minify/core": "^6.2.0",
+    "@node-minify/html-minifier": "^6.2.0",
+    "@node-minify/uglify-js": "^6.2.0",
+    "aws-sdk": "^2.800.0",
+    "chalk": "^4.1.1",
+    "clean-up-path": "^1.0.0",
+    "cryptr": "^6.0.2",
+    "deasync": "^0.1.21",
+    "ftp-deploy": "^2.4.1",
+    "less": "^4.1.1",
+    "mime-types": "^2.1.31",
+    "prompt-sync": "^4.2.0",
+    "sass": "^1.35.1",
+    "through": "^2.3.8"
+  }
+}

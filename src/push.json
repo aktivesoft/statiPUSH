@@ -1,0 +1,36 @@
+{
+    "source": "html/",
+    "output": "build/",    
+    "mode": "s3",
+    "build": [
+        {
+            "command": "",
+            "params": ""
+        }
+    ],
+    "css_process": 1,
+    "minify": 1,
+    "exclude": [
+        "*.scss",
+        "*.less",
+        "*.sass"
+    ],
+    "s3_mode": {
+        "bucket": "",
+        "profile": "default",
+        "distribution": ""
+    },
+    "ftp_mode": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "path": ""
+    },
+    "scp_mode": {
+        "host": "",
+        "user": "",
+        "keyfile": "",
+        "path": ""
+    }    
+}
