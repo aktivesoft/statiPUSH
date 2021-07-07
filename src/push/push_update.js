@@ -1,12 +1,14 @@
 var path = path || require('path');
 var fs = fs || require('fs');
-const shell = require('shelljs');
+// const shell = require('shelljs');
 const chalk = require('chalk');
 var execSync = require('child_process').execSync;
 var prompt = require('prompt-sync')();
+const { exit } = require('process');
 var _fs = process.platform.indexOf('win32') >= 0 ? '\\' : '/';
 
-function do_copy(file) {    
+function do_copy(file) { 
+    console.log(absolutePath + path.basename(file));
     if (fs.existsSync(absolutePath + path.basename(file))) {
         fs.unlinkSync(absolutePath + path.basename(file));
     }
@@ -41,15 +43,16 @@ if (promptYN('Do you want to update statiPUSH?') != 'Y') {
     exit();
 }
 
-if (fs.existsSync("./statiPUSH/")) {  
+
+if (!fs.existsSync("./statiPUSH")) {  
     console.log(chalk.bold('Cloning statiPUSH'));
-    shell.exec('git clone https://github.com/jmoleiro/statiPUSH');
+    execSync('git clone https://github.com/jmoleiro/statiPUSH.git ', { stdio: 'inherit', encoding: 'utf8' });
 } else {
     console.log(chalk.bold('Updating statiPUSH'));
-    execSync('git pull origin master --rebase', { cwd: './statiPUSH/', stdio: 'inherit', encoding: 'utf8' })
+    execSync('git pull --rebase', { cwd: './statiPUSH', stdio: 'inherit', encoding: 'utf8' })
 }
 
-let absolutePath = path.resolve('./') + _fs;
+let absolutePath = path.resolve('../') + _fs;
 let source = './statiPUSH/src/';
 
 do_copy(source + 'push_update.bat');
