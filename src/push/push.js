@@ -13,6 +13,7 @@ const minify = require('@node-minify/core');
 const { exit } = require('process');
 const Cryptr = require('cryptr');
 const homedir = require('os').homedir();
+var prompt = require('prompt-sync')();
 var _fs = process.platform.indexOf('win32') >= 0 ? '\\' : '/';
 var _ofs = _fs == '/' ? '\\' : '/';
 var info = require('./package.json')
@@ -104,7 +105,7 @@ var lessC = function(file) {
     return _result;
 }
 
-var _ep = path.resolve('../..');
+var _ep = path.resolve('../');
 
 _project = _ep.split(_fs).slice(-1)[0];
 
@@ -114,7 +115,6 @@ console.log(chalk.white.bold('statiPUSH') + ' ' + info.version);
 let __key = "";
 if (!fs.existsSync(_home + _project + 'spush.key')) {
     //This key must be provided by project manager
-    console.log(_reset ? "Key reset"  : "Key not detected");
     var correct = false;
     var _key = "";
     while (!correct) {
@@ -130,12 +130,13 @@ if (!fs.existsSync(_home + _project + 'spush.key')) {
     fs.writeFileSync(_home + _project + 'spush.key', _key);
     console.log("Key stored");
 } else {
-    __key = fs.readFileSync(_home + _project + 'spush.key');
+    __key = fs.readFileSync(_home + _project + 'spush.key', 'utf8');
 }
 
 if ((config.ftp_mode.password != "") && (config.ftp_mode.password.slice(-2) != '==')) {
-    config.ftp_mode.password = encrypt(config.ftp_mode.password) + '==';
-    fs.writeFileSync('../push.json', JSON.stringify(config));
+    var oconfig = JSON.parse(fs.readFileSync('../push.json', 'utf8'))
+    oconfig.ftp_mode.password = encrypt(oconfig.ftp_mode.password) + '==';
+    fs.writeFileSync('../push.json', JSON.stringify(oconfig));
 }
 
 console.log(chalk.blue('Cleaning up build folder'));
