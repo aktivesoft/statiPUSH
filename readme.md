@@ -28,7 +28,7 @@ After instaling the tool on your project, first you need to edit the **push.json
 - **mode** indicates the push mode. There are 4 different values: *s3*, *cloudfront_s3*, *ftp* and *scp*
 - **build** here you can indicate the build commans that the tool should invoke. You can indicate as much as you need.
 - **css_process** indicates if LESS nd SASS files will be processed. Values can be 1 to enable and 0 to disable.
-- **minify** indicates if the tool needs to minify HTML, CSS and JS files or not. Values can be 1 to enable and 0 to disable.
+- **minify** indicates if the tool needs to minify HTML, CSS and JS files or not. Values can be 1 to enable and 0 to disable. 
 - **exclude** indicate the file paths and extensions that will not be uploaded.
 - **s3_mode** indicate the S3 options.
 - **ftp_mode** indicates the FTP options
@@ -40,6 +40,7 @@ When you are using the **s3** and **cloudfront_s3** modes, the tool load the con
 
 - **bucket** is the S3 Bucket name where the files re going to be uploaded
 - **profile** is the AWS profile defined using the *aws configure* command
+- **region**: (optional) is the AWS region where the bucket is located. If it's not defined it will use the profile default region.
 - **distribution** is the Cloudfront distribution ID that you are using. Used only on mode **cloudfront_s3** 
 
 ## FTP Options

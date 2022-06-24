@@ -17,6 +17,7 @@
     ],
     "s3_mode": {
         "bucket": "",
+        "region": "",
         "profile": "default",
         "distribution": ""
     },

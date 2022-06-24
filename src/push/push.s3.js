@@ -64,9 +64,18 @@ const uploadFile = (fileName, file_ups) => {
 
 _bucket = config.s3_mode.bucket;
 
-const s3 = new AWS.S3({
+var credentials = new AWS.SharedIniFileCredentials({profile: config.s3_mode.profile});
+AWS.config.credentials = credentials;
+
+let options = {
     profile: config.s3_mode.profile
-});
+}
+
+if ((config.s3_mode.region != undefined) && (config.s3_mode.region != "")) {
+    options.region = config.s3_mode.region;
+}
+
+const s3 = new AWS.S3(options);
 
 console.log(chalk.blueBright('Uploading files to S3'));
 _files = walkSync(config.output, []);
